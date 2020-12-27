@@ -1,0 +1,71 @@
+{% apply spaceless %}
+    {{ use('app/widgets/Alert') }}
+    {{ use('yii/bootstrap') }}
+    {{ use('yii/widgets/Breadcrumbs') }}
+
+    {{ void(this.beginPage()) }}
+    <!DOCTYPE html>
+    <html lang="{{ app.language }}">
+
+    <head>
+        <meta charset="{{ app.charset }}">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <title>{{ this.title }}</title>
+        {{ html.csrfMetaTags | raw }}
+        {{ void(this.head) }}
+    </head>
+
+    <body>
+    {{ void(this.beginBody()) }}
+
+    <div class="wrap">
+
+        {{ nav_bar_begin({
+            'brandLabel': t('app', 'company name'),
+        }) }}
+
+        {{ nav_widget({
+            'options': {
+                'class': 'navbar-nav navbar-right',
+            },
+            'items': [{
+                'label': t('app', 'home'),
+                'url': '/site/index',
+            },{
+                'label': t('app', 'tasks'),
+                'url': '/task',
+                }
+            ]
+        }) }}
+
+        {{ nav_bar_end() }}
+
+        <div class="container">
+
+            {{ Breadcrumbs_widget({
+                'links' : app.params.breadcrumbs,
+            }) }}
+
+            {{ Alert_widget() }}
+
+            {% block content %}
+                {{ content | raw }}
+            {% endblock %}
+
+        </div>
+    </div>
+
+    {% block footer %}
+        <footer class="footer">
+            <div class="container">
+                <p class="pull-left">&copy; {{ t('app', 'company name') }} - {{ now | date('Y') }}</p>
+            </div>
+        </footer>
+    {% endblock footer %}
+
+    {{ void(this.endBody()) }}
+    </body>
+    </html>
+    {{ void(this.endPage()) }}
+{% endapply %}

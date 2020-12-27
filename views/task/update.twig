@@ -1,0 +1,32 @@
+{{ use('yii/bootstrap/ActiveForm') }}
+<div>
+    <h1>{{ this.title }}</h1>
+
+    <p>{{ t('app', 'hepl text') }}</p>
+
+    {% set form = active_form_begin({
+        'id': 'task-form',
+        'layout': 'horizontal',
+        'fieldConfig': {
+            'template': "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+            'labelOptions': {'class': 'col-lg-1 control-label'},
+        }}
+    ) %}
+
+    {{ form.field(model, 'title').
+        textInput({'autofocus': true}) | raw }}
+
+    {{ form.field(model, 'description').
+        textarea() | raw }}
+
+    {{ form.field(model, 'is_finished').
+        checkbox({'template': "<div class=\"col-lg-offset-1 col-lg-3\">{input}&nbsp;{label}</div>\n<div class=\"col-lg-8\">{error}</div>"}) | raw }}
+
+    <div class="form-group">
+        <div class="col-lg-offset-1 col-lg-11">
+            {{ html.submitButton(t('app', 'submit'), {'class':'btn btn-primary', 'name': 'login-button'}) | raw }}
+        </div>
+    </div>
+
+    {{ active_form_end() | raw }}
+</div>

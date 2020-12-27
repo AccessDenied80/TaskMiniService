@@ -1,0 +1,22 @@
+<div class="site-index">
+
+    <div class="jumbotron">
+        <h1>{{ this.title }}</h1>
+    </div>
+
+    <div class="body-content">
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>{{ t('app', 'create task') }}</h2>
+                <p><a class="btn btn-default" href="{{ url('/task/update') }}">{{ t('app', 'go') }} &raquo;</a></p>
+            </div>
+            <div class="col-lg-6">
+                <h2>{{ t('app', 'task list') }}</h2>
+                <p><a class="btn btn-default" href="{{ url('/task') }}">{{ t('app', 'go') }} &raquo;</a></p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
